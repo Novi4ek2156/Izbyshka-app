@@ -3,9 +3,11 @@ package com.example.izbushka
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ConnectActivity::class.java)
             startActivity(intent)
         }
-
+    }
+    fun Innactive(view: View) {
+        Toast.makeText(applicationContext, "Временно не работает(", Toast.LENGTH_SHORT).show()
     }
 }

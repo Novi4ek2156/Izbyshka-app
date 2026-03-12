@@ -21,6 +21,7 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <Button
+        android:onClick="Innactive"
         android:id="@+id/button2"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
@@ -71,6 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <Button
+        android:onClick="Innactive"
         android:id="@+id/button3"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
