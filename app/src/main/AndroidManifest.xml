@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Izbushka">
         <activity
+            android:name=".ConnectActivity"
+            android:theme="@style/AppTheme.Transparent"
+            android:exported="false" />
+        <activity
             android:name=".FunctionActivity"
             android:exported="false" />
         <activity
