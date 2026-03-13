@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/background"
+        android:background="@drawable/rounded_background"
         android:backgroundTint="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:hint="Введите ip" />
+                android:digits="0123456789."
+                android:hint="Введите ip"
+                android:inputType="number|numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -61,12 +63,12 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         <Button
-            android:onClick="ToastMe"
             android:id="@+id/bt_back2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/button"
+            android:onClick="ToastMe"
             android:text="Ввод"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
