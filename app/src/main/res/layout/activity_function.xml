@@ -5,9 +5,81 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".FunctionActivity">
 
     <Button
+=======
+    android:background="@color/background"
+    tools:context=".FunctionActivity">
+
+    <Button
+        android:id="@+id/bt_leftarm"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/button"
+        android:text="Левая рука"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_offmusic" />
+
+    <Button
+        android:id="@+id/bt_rightarm"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/button"
+        android:text="Правая рука"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_leftarm" />
+
+    <Button
+        android:id="@+id/bt_down"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/button"
+        android:text="Посмотреть вниз"
+        app:layout_constraintBottom_toTopOf="@+id/backmain_func"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_up"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/bt_up"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/button"
+        android:text="Посмотреть вверх"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_rightarm" />
+
+    <Button
+        android:id="@+id/bt_onmusic"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/button"
+        android:text="Вкл музыку"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_wave" />
+
+    <Button
+        android:id="@+id/bt_offmusic"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/button"
+        android:text="Выкл музыку"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_onmusic" />
+
+    <Button
+>>>>>>> backend
         android:id="@+id/backmain_func"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,4 +90,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+<<<<<<< HEAD
+=======
+
+    <Button
+        android:id="@+id/bt_wave"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/button"
+        android:text="Помахать"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_about_ys" />
+
+    <Button
+        android:id="@+id/bt_about_ys"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/button"
+        android:text="Рассказать о себе"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> backend
 </androidx.constraintlayout.widget.ConstraintLayout>

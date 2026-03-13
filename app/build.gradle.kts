@@ -44,4 +44,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+<<<<<<< HEAD
+=======
+    implementation("org.zeromq:jeromq:0.6.0")
+>>>>>>> backend
 }

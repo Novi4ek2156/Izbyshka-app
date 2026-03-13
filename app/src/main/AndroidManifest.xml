@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="android.permission.INTERNET" />
+>>>>>>> backend
 
     <application
         android:allowBackup="true"
@@ -12,6 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Izbushka">
         <activity
+<<<<<<< HEAD
+=======
+            android:name=".ConnectActivity"
+            android:theme="@style/AppTheme.Transparent"
+            android:exported="false" />
+        <activity
+>>>>>>> backend
             android:name=".FunctionActivity"
             android:exported="false" />
         <activity
