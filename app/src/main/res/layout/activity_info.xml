@@ -5,54 +5,226 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="#F0ECCF"
     tools:context=".InfoActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="97dp"
+        android:layout_height= "0dp"
+        android:background="#D3CA92"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002">
+
+
+        <Button
+            android:id="@+id/bt_main"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="86dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="88dp"
+            android:backgroundTint="#BA9A6F"
+            android:padding="0dp"
+            android:text="Main"
+            android:textColorLink="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/LabelShape" />
+
+        <Button
+            android:id="@+id/bt_connect"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="86dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#BA9A6F"
+            android:padding="0dp"
+            android:text="Connect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_main"
+            app:shapeAppearanceOverlay="@style/LabelShape" />
+
+        <Button
+            android:id="@+id/bt_info"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="86dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="#BA9A6F"
+            android:padding="0dp"
+            android:text="Info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_connect"
+            app:shapeAppearanceOverlay="@style/LabelShape" />
+
+        <Button
+            android:id="@+id/bt_settings"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="86dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#BA9A6F"
+            android:padding="0dp"
+            android:text="Setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_info"
+            app:shapeAppearanceOverlay="@style/LabelShape" />
+
+        <Button
+            android:id="@+id/bt_stream"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="86dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#BA9A6F"
+            android:padding="0dp"
+            android:text="Stream"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_settings"
+            app:shapeAppearanceOverlay="@style/LabelShape" />
+
+        <Button
+            android:id="@+id/bt_func"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="86dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#BA9A6F"
+            android:padding="0dp"
+            android:text="Function"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_stream"
+            app:shapeAppearanceOverlay="@style/LabelShape" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"
         android:layout_height="match_parent"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <Button
             android:id="@+id/button7"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/button"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="100dp"
+            android:backgroundTint="#A98665"
             android:text="Назад"
             android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button5" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_info_ai" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btn_on_yrs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:backgroundTint="@color/button"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="#A98665"
             android:text="Вкл &quot;О себе&quot;"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btn_radio_on"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="#A98665"
+            android:text="Вкл радио"
+            android:textSize="14dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_off_yrs"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/btn_off_yrs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/button"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#A98665"
             android:text="Выкл &quot;О себе&quot;"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_on_yrs" />
+
+        <Button
+            android:id="@+id/btn_radio_off"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A98665"
+            android:text="Выкл радио"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_radio_on" />
+
+        <Button
+            android:id="@+id/btn_inf_code"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="#A98665"
+            android:text="&quot;О коде&quot;"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_radio_off" />
+
+        <Button
+            android:id="@+id/btn_inf_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A98665"
+            android:text="&quot;О платах&quot;"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_inf_code" />
+
+        <Button
+            android:id="@+id/btn_info_ai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A98665"
+            android:text="&quot;О нейросетях&quot;"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_inf_power" />
+
+        <Button
+            android:id="@+id/btn_inf_power"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="#A98665"
+            android:text="&quot;О себе&quot;"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_inf_card" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
