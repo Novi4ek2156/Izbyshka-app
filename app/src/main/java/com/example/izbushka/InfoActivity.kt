@@ -24,6 +24,16 @@ class InfoActivity : AppCompatActivity() {
         btnMenu.setOnClickListener {
             finish()
         }
+        val btnFunc1 = findViewById<Button>(R.id.button4)
+        btnFunc1.setOnClickListener {
+            it.animate()
+                .scaleX(0.6f)
+                .scaleY(0.6f)
+                .setDuration(100)
+                .withEndAction {
+                    it.animate().scaleX(1f).scaleY(1f).duration = 100
+                }
+        }
     }
 
 }

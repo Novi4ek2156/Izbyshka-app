@@ -39,6 +39,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ConnectActivity::class.java)
             startActivity(intent)
         }
+        val btnStream = findViewById<Button>(R.id.button3)
+        btnStream.setOnClickListener {
+            val intent = Intent(this, StreamActivity::class.java)
+            startActivity(intent)
+        }
     }
     fun Innactive(view: View) {
         Toast.makeText(applicationContext, "Временно не работает(", Toast.LENGTH_SHORT).show()

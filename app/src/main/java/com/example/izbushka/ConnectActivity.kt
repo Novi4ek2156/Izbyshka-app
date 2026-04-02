@@ -1,80 +1,89 @@
 package com.example.izbushka
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.view.View
+import android.util.Patterns
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import android.widget.EditText
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.google.android.material.textfield.TextInputLayout
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 
 class ConnectActivity : AppCompatActivity() {
-    private val socketManager = SocketManager()
     private lateinit var textInputLayout: TextInputLayout
+    private lateinit var tvStatus: TextView
+    private lateinit var btnConnect: Button
+    private lateinit var btnNext: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_connect)
+
+        initViews()
+        setupWindowInsets()
+
+        btnConnect.setOnClickListener {
+            val ip = textInputLayout.editText?.text.toString().trim()
+            if (Patterns.IP_ADDRESS.matcher(ip).matches()) {
+                connect(ip)
+            } else {
+                textInputLayout.error = "Неверный IP"
+            }
+        }
+
+        btnNext.setOnClickListener {
+            if (SocketManager.isConnected()) {
+                startActivity(Intent(this, StreamActivity::class.java))
+            } else {
+                Toast.makeText(this, "Нет связи", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateUI(SocketManager.isConnected())
+    }
+
+    private fun connect(ip: String) {
+        lifecycleScope.launch {
+            btnConnect.isEnabled = false
+            tvStatus.text = "Подключение..."
+
+            val success = SocketManager.connect(ip)
+            updateUI(success)
+
+            val msg = if (success) "Успешно" else "Ошибка"
+            Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+            btnConnect.isEnabled = true
+        }
+    }
+
+    private fun updateUI(connected: Boolean) {
+        tvStatus.text = if (connected) "Подключено к ${SocketManager.getCurrentIpAddress()}" else "Нет связи"
+        tvStatus.setTextColor(if (connected) Color.GREEN else Color.RED)
+        btnNext.alpha = if (connected) 1.0f else 0.5f
+    }
+
+    private fun initViews() {
         textInputLayout = findViewById(R.id.textInputLayout)
+        tvStatus = findViewById(R.id.tv_connection_status)
+        btnConnect = findViewById(R.id.bt_connect)
+        btnNext = findViewById(R.id.bt_to_functions)
+    }
+
+    private fun setupWindowInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val s = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(s.left, s.top, s.right, s.bottom)
             insets
-        }
-        val btnMenu = findViewById<Button>(R.id.bt_back)
-
-        // Устанавливаем обработчик клика
-        btnMenu.setOnClickListener {
-            finish()
-        }
-
-    }
-    fun isValidIp(ip: String): Boolean {
-        val ipRegex = "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$".toRegex()
-        return ip.matches(ipRegex)
-    }
-
-    fun ToastMe(view: View) {
-        val ip_address = textInputLayout.editText?.text.toString().trim()
-
-        when {
-            ip_address.isEmpty() -> {
-                textInputLayout.error = "Введите IP-адрес"
-            }
-
-            !isValidIp(ip_address) -> {
-                textInputLayout.error = "Неверный формат IP"
-            }
-
-            else -> {
-                textInputLayout.error = null
-
-                // 2. Запускаем подключение в корутине
-                lifecycleScope.launch {
-                    val isConnected = socketManager.connect(ip_address, 8001) // укажите ваш порт
-                    if (isConnected) {
-                        Toast.makeText(
-                            this@ConnectActivity,
-                            "Подключено к $ip_address",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        // Здесь можно отправить тестовую команду, например:
-                        // socketManager.sendCommand("CMD_CONNECT")
-                    } else {
-                        Toast.makeText(
-                            this@ConnectActivity,
-                            "Ошибка подключения!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
         }
     }
 }
