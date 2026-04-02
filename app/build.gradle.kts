@@ -45,4 +45,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("org.zeromq:jeromq:0.6.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
 }

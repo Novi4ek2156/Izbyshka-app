@@ -8,6 +8,7 @@
     tools:context=".ConnectActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/rounded_background"
@@ -24,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="IP"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +48,8 @@
                 android:layout_height="52dp"
                 android:digits="0123456789."
                 android:hint="Введите ip"
-                android:inputType="number|numberDecimal" />
+                android:inputType="number|numberDecimal"
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -63,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         <Button
-            android:id="@+id/bt_back2"
+            android:id="@+id/bt_connect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -72,9 +75,34 @@
             android:text="Ввод"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintHorizontal_bias="0.062"
             app:layout_constraintStart_toEndOf="@+id/bt_back"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/bt_to_functions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#BA9A6F"
+            android:text="К функциям"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.953"
+            app:layout_constraintStart_toEndOf="@+id/bt_connect"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_connection_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No connection"
+        android:textColor="@color/white"
+        android:textSize="23dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
