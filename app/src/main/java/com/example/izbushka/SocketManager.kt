@@ -95,6 +95,7 @@ object SocketManager {
         } finally {
             isReceivingVideo = false
         }
+
     }
 
     fun stopVideoTransmission() {

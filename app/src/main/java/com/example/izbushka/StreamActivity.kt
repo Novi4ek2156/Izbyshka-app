@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.v
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.ImageView
@@ -16,18 +15,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
-import com.example.izbushka.SocketManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class StreamActivity : AppCompatActivity() {
@@ -37,6 +28,8 @@ class StreamActivity : AppCompatActivity() {
     private lateinit var btnStart: Button
     private lateinit var btnStop: Button
     private lateinit var btnBack: Button
+
+    private var repeatJob: Job? = null
 
     companion object {
         private const val TAG = "StreamActivity"
@@ -55,9 +48,9 @@ class StreamActivity : AppCompatActivity() {
 
         initViews()
         setupListeners()
+        setupMoveButtons()
         setupVideoFlow()
         setupErrorFlow()
-
     }
 
     private fun initViews() {
@@ -79,6 +72,13 @@ class StreamActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupMoveButtons() {
+        MoveForwardButton()
+        MoveBackButton()
+        MoveLeftButton()
+        MoveRightButton()
+    }
+
     private fun startVideo() {
         tvStatus.text = "Статус: Запуск..."
         btnStart.isEnabled = false
@@ -86,28 +86,36 @@ class StreamActivity : AppCompatActivity() {
         SocketManager.startVideoTransmission()
         Log.d(TAG, "Video start requested")
     }
-    var repeatJob: Job? = null
+
+    private fun stopVideo() {
+        SocketManager.stopVideoTransmission()
+        tvStatus.text = "Статус: Остановлено"
+        btnStart.isEnabled = true
+        btnStop.isEnabled = false
+        imageView.setImageBitmap(null)
+        Log.d(TAG, "Video stopped")
+    }
+
     //движение вперед
     @SuppressLint("ClickableViewAccessibility")
     private fun MoveForwardButton() {
         val btnMoveForward = findViewById<Button>(R.id.bt_move_forward)
 
-        btnMoveForward.setOnTouchListener { view, event ->
+        btnMoveForward.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    view.animate()
+                    btnMoveForward.animate()
                         .scaleX(0.6f)
                         .scaleY(0.6f)
                         .setDuration(100)
                         .start()
 
-                    // 1. Одиночный запрос
+                    // Одиночный запрос
                     lifecycleScope.launch {
                         SocketManager.sendCommand("CMD_MOVE_FORWARD", 5001)
-                        SocketManager.sendCommand("CMD_MOVE_STOP", 5001)
                     }
 
-                    // 2. Запуск цикла удержания
+                    // Запуск цикла удержания
                     repeatJob?.cancel()
                     repeatJob = lifecycleScope.launch {
                         delay(600) // Ждем 0.6 сек перед началом повторов
@@ -120,7 +128,7 @@ class StreamActivity : AppCompatActivity() {
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     // Возвращаем кнопку в исходный размер
-                    view.animate()
+                    btnMoveForward.animate()
                         .scaleX(1.0f)
                         .scaleY(1.0f)
                         .setDuration(100)
@@ -140,50 +148,45 @@ class StreamActivity : AppCompatActivity() {
             }
         }
     }
+
     //движение назад
     @SuppressLint("ClickableViewAccessibility")
     private fun MoveBackButton() {
         val btnMoveBack = findViewById<Button>(R.id.bt_move_back)
 
-        btnMoveBack.setOnTouchListener { view, event ->
+        btnMoveBack.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    view.animate()
+                    btnMoveBack.animate()
                         .scaleX(0.6f)
                         .scaleY(0.6f)
                         .setDuration(100)
                         .start()
 
-                    // 1. Одиночный запрос
                     lifecycleScope.launch {
                         SocketManager.sendCommand("CMD_MOVE_BACKWARD", 5001)
-                        SocketManager.sendCommand("CMD_MOVE_STOP", 5001)
                     }
 
-                    // 2. Запуск цикла удержания
                     repeatJob?.cancel()
                     repeatJob = lifecycleScope.launch {
-                        delay(600) // Ждем 0.6 сек перед началом повторов
+                        delay(600)
                         while (isActive) {
                             SocketManager.sendCommand("CMD_MOVE_BACKWARD", 5001)
-                            delay(200) // Интервал спама
+                            delay(200)
                         }
                     }
                     true
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    // Возвращаем кнопку в исходный размер
-                    view.animate()
+                    btnMoveBack.animate()
                         .scaleX(1.0f)
                         .scaleY(1.0f)
                         .setDuration(100)
                         .start()
 
-                    // Останавливаем цикл повторов
                     repeatJob?.cancel()
                     repeatJob = null
 
-                    // Отправляем команду остановки
                     lifecycleScope.launch {
                         SocketManager.sendCommand("CMD_MOVE_STOP", 5001)
                     }
@@ -193,50 +196,45 @@ class StreamActivity : AppCompatActivity() {
             }
         }
     }
+
     //движение влево
     @SuppressLint("ClickableViewAccessibility")
     private fun MoveLeftButton() {
         val btnMoveLeft = findViewById<Button>(R.id.bt_move_left)
 
-        btnMoveLeft.setOnTouchListener { view, event ->
+        btnMoveLeft.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    view.animate()
+                    btnMoveLeft.animate()
                         .scaleX(0.6f)
                         .scaleY(0.6f)
                         .setDuration(100)
                         .start()
 
-                    // 1. Одиночный запрос
                     lifecycleScope.launch {
                         SocketManager.sendCommand("CMD_MOVE_LEFT", 5001)
-                        SocketManager.sendCommand("CMD_MOVE_STOP", 5001)
                     }
 
-                    // 2. Запуск цикла удержания
                     repeatJob?.cancel()
                     repeatJob = lifecycleScope.launch {
-                        delay(600) // Ждем 0.6 сек перед началом повторов
+                        delay(600)
                         while (isActive) {
-                            SocketManager.sendCommand("CCMD_MOVE_LEFT", 5001)
-                            delay(200) // Интервал спама
+                            SocketManager.sendCommand("CMD_MOVE_LEFT", 5001)
+                            delay(200)
                         }
                     }
                     true
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    // Возвращаем кнопку в исходный размер
-                    view.animate()
+                    btnMoveLeft.animate()
                         .scaleX(1.0f)
                         .scaleY(1.0f)
                         .setDuration(100)
                         .start()
 
-                    // Останавливаем цикл повторов
                     repeatJob?.cancel()
                     repeatJob = null
 
-                    // Отправляем команду остановки
                     lifecycleScope.launch {
                         SocketManager.sendCommand("CMD_MOVE_STOP", 5001)
                     }
@@ -246,50 +244,45 @@ class StreamActivity : AppCompatActivity() {
             }
         }
     }
+
     //движение вправо
     @SuppressLint("ClickableViewAccessibility")
     private fun MoveRightButton() {
         val btnMoveRight = findViewById<Button>(R.id.bt_move_right)
 
-        btnMoveRight.setOnTouchListener { view, event ->
+        btnMoveRight.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    view.animate()
+                    btnMoveRight.animate()
                         .scaleX(0.6f)
                         .scaleY(0.6f)
                         .setDuration(100)
                         .start()
 
-                    // 1. Одиночный запрос
                     lifecycleScope.launch {
                         SocketManager.sendCommand("CMD_MOVE_RIGHT", 5001)
-                        SocketManager.sendCommand("CMD_MOVE_STOP", 5001)
                     }
 
-                    // 2. Запуск цикла удержания
                     repeatJob?.cancel()
                     repeatJob = lifecycleScope.launch {
-                        delay(600) // Ждем 0.6 сек перед началом повторов
+                        delay(600)
                         while (isActive) {
                             SocketManager.sendCommand("CMD_MOVE_RIGHT", 5001)
-                            delay(200) // Интервал спама
+                            delay(200)
                         }
                     }
                     true
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    // Возвращаем кнопку в исходный размер
-                    view.animate()
+                    btnMoveRight.animate()
                         .scaleX(1.0f)
                         .scaleY(1.0f)
                         .setDuration(100)
                         .start()
 
-                    // Останавливаем цикл повторов
                     repeatJob?.cancel()
                     repeatJob = null
 
-                    // Отправляем команду остановки
                     lifecycleScope.launch {
                         SocketManager.sendCommand("CMD_MOVE_STOP", 5001)
                     }
@@ -299,31 +292,20 @@ class StreamActivity : AppCompatActivity() {
             }
         }
     }
-    private fun stopVideo() {
-        SocketManager.stopVideoTransmission()
-        tvStatus.text = "Статус: Остановлено"
-        btnStart.isEnabled = true
-        btnStop.isEnabled = false
-        imageView.setImageBitmap(null)
-        Log.d(TAG, "Video stopped")
-    }
 
     private fun setupVideoFlow() {
-        // repeatOnLifecycle — золотой стандарт:
-        // корутина спит, когда приложение свернуто, и просыпается сама
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 SocketManager.videoFrameFlow.collectLatest { frameData ->
-                    // 1. Декодируем в фоновом потоке (Default), чтобы не фризить UI
                     val bitmap = withContext(Dispatchers.Default) {
                         try {
                             BitmapFactory.decodeByteArray(frameData, 0, frameData.size)
                         } catch (e: Exception) {
+                            Log.e(TAG, "Decoding error: ${e.message}")
                             null
                         }
                     }
 
-                    // 2. Выводим результат в UI (мы уже в Main-потоке благодаря lifecycleScope)
                     if (bitmap != null) {
                         imageView.setImageBitmap(bitmap)
                         tvStatus.text = "Кадр: ${frameData.size / 1024} KB | ${bitmap.width}x${bitmap.height}"
@@ -350,11 +332,9 @@ class StreamActivity : AppCompatActivity() {
         }
     }
 
-
-
     override fun onDestroy() {
         super.onDestroy()
-        // Важно остановить сетевой поток при выходе с экрана
+        repeatJob?.cancel()
         SocketManager.stopVideoTransmission()
     }
 }

@@ -46,6 +46,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Main"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -59,6 +60,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Connect"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_main"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -72,6 +74,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Info"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_connect"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -85,6 +88,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Setting"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_info"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -98,6 +102,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Stream"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_settings"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -111,6 +116,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Function"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_stream"
             app:shapeAppearanceOverlay="@style/LabelShape" />

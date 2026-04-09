@@ -28,6 +28,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Main"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -41,6 +42,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Connect"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_main"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -54,6 +56,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Info"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_connect"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -67,6 +70,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Setting"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_info"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -80,6 +84,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Stream"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_settings"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -94,6 +99,7 @@
             android:backgroundTint="#BA9A6F"
             android:padding="0dp"
             android:text="Function"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_stream"
             app:shapeAppearanceOverlay="@style/LabelShape" />
@@ -107,6 +113,7 @@
         android:layout_marginEnd="100dp"
         android:backgroundTint="#A98665"
         android:text="Правая рука"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toBottomOf="@+id/bt_leftarm" />
@@ -118,6 +125,7 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="#A98665"
         android:text="back"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toBottomOf="@+id/bt_down" />
@@ -130,6 +138,7 @@
         android:layout_marginEnd="100dp"
         android:backgroundTint="#A98665"
         android:text="Посмотреть вниз"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toBottomOf="@+id/bt_up" />
@@ -143,6 +152,7 @@
         android:layout_marginEnd="100dp"
         android:backgroundTint="#A98665"
         android:text="Посмотреть вверх"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toBottomOf="@+id/bt_rightarm" />
@@ -156,6 +166,7 @@
         android:layout_marginEnd="100dp"
         android:backgroundTint="#A98665"
         android:text="Левая рука"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toBottomOf="@+id/bt_offmusic" />
@@ -169,6 +180,7 @@
         android:layout_marginEnd="100dp"
         android:backgroundTint="#A98665"
         android:text="Вкл музыку"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toBottomOf="@+id/bt_wave" />
@@ -182,6 +194,7 @@
         android:layout_marginEnd="100dp"
         android:backgroundTint="#A98665"
         android:text="Выкл музыку"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toBottomOf="@+id/bt_onmusic" />
@@ -195,6 +208,7 @@
         android:layout_marginEnd="100dp"
         android:backgroundTint="#A98665"
         android:text="Помахать"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toTopOf="parent" />
